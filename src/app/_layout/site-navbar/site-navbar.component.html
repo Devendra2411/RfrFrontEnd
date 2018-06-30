@@ -1,0 +1,34 @@
+<div class="navbar x-scope px-app-nav-0 "
+     [ngClass]="status ? 'navbar x-scope px-app-nav-0 navbar--text-hidden navbar--collapsed' : 'navbar x-scope px-app-nav-0'">
+  <nav role="navigation" class="px-app-nav">
+    <button (click)="status=!status" class="btn btn--bare btn--svg px-app-nav">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" viewBox="291 489.4 20 16" class="px-app-nav">
+        <path fill="#ffffff" d="M291 489.4v4h20v-4h-20zm0 10h20v-4h-20v4zm0 6h20v-4h-20v4z" class="px-app-nav"></path>
+      </svg>
+    </button>
+    <ul id="navitemlist" class="navbar__item list-bare px-app-nav">
+      <li class="px-app-nav">
+        <a class="px-app-nav" routerLink="/rfrWorkflow" routerLinkActive="selected">
+          <i class="fa-tachometer fa px-app-nav"></i>
+          <span class="u-ml-- px-app-nav">Workflows</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="x-scope px-login-0 sticky" user-name="">
+    <div class="login px-login">
+      <button class="btn btn--bare px-login" style="min-width:0;">
+        <i class="fa fa-user text--center px-login"></i>
+        <span class="u-mh-- user_name_sso px-login">{{username}}</span>
+        <i class="fa fa-angle-up px-login"></i>
+      </button>
+      <ul class="dropdown-menu list-bare px-login">
+        <li class="px-login">
+          <a href="/logout" class="px-login">Sign out</a>
+        </li>
+      </ul>
+    </div>
+    <div>
+
+    </div>

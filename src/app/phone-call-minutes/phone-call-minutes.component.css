@@ -1,0 +1,4 @@
+.asterisk::after {
+    content: '*';
+    color: red
+  }

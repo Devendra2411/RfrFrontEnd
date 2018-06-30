@@ -1,0 +1,56 @@
+app-item-attachment{
+    .fa-paperclip{
+        cursor: pointer;
+        font-size: 22px;
+        margin-right: 10px;
+        display: inline-block;
+        margin-top: -5px;
+    }
+
+    .ui-chkbox-label{
+        display: inline;
+    }
+    .ui-fluid .ui-fileupload .ui-button{
+        width: 100px;
+    }
+    
+    .ia-heading{
+      font-size: 16px;
+      color: var(--px-base-text-color, #2c404c);
+      font-weight: 800;
+    }
+
+    .ui-state-disabled, .ui-widget:disabled{
+        cursor: not-allowed !important;
+        opacity: 0.35;
+    }
+
+    .ui-state-disabled *, .ui-widget:disabled *{
+        cursor: not-allowed !important;
+    }
+    .ui-fileupload{
+        .ui-widget-header{
+            background: #f6f7f9 0 0 repeat-x;
+            background: linear-gradient(to bottom, #f6f7f9 0%, #ebedf0 100%);
+            border: 1px solid #d9d9d9;
+        }
+        .ui-fileupload-content{
+            height: 150px;
+            overflow-y: scroll;
+            &.ui-widget-content{
+                background-color: #f8f8f8!important;
+            }
+        }
+    }
+
+    .ui-fileupload-row{
+        box-shadow: 1px 5px 5px #ddd;
+        border: 1px solid #ddd;
+    }
+    
+    .ui-dialog{
+        z-index: 11111!important;
+        top:40px!important;
+    }
+        
+}

@@ -1,0 +1,50 @@
+<i class="fa fa-paperclip" matBadge="{{formModel?.uploadedFiles ? formModel?.uploadedFiles.length : 0}}" matBadgePosition="after" 
+(click)="toggleSideBar()" aria-hidden="true"></i>
+
+<p-growl [value]="msgs" [life]="5000" [baseZIndex]="11111"></p-growl>
+<p-confirmDialog #cd header="Confirmation" icon="pi pi-exclamation-triangle" width="425"></p-confirmDialog>
+
+<p-sidebar styleClass="ui-sidebar-md" #sidebar [(visible)]="visibleSidebar" position="bottom" [baseZIndex]="10000">
+
+  <div class="itemFormContainer">
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-6">
+        <div class="ia-heading">Upload files</div>
+          <ul>
+            <li style="color:red;margin-left:-51px!important" *ngFor="let errorMsg  of errorMsgs">{{errorMsg}}</li>
+          </ul>
+        <p-fileUpload maxFileSize="10000000" #fileUpload mode="advanced" name="files[]" customUpload="true" (onClear)="onClear()" (uploadHandler)="attachmentUploader($event)"
+                       multiple="multiple"></p-fileUpload>
+      </div>
+      <div class="ui-g-12 ui-md-6">
+        <div class="ia-heading ui-g-12 ui-md-2">Attachments</div>
+        <div class="ui-g-12 ui-md-2"><button type="text" (click)="confirmDelete()" 
+            [disabled]="this.selectedValues.length > 0 ? false:true" pButton icon="pi pi-times" label="Delete"></button></div>
+        <div class="ui-g-12 ui-md-12">
+            <form #form (ngSubmit)="onSubmit(form)" style="height: 165px;border: 1px solid;
+            overflow-y: scroll;background: linear-gradient(to bottom, #f6f7f9 0%, #ebedf0 100%);
+            border: 1px solid #d9d9d9;">
+                <div class="ui-g ui-fluid">
+                  <div class="ui-g-12 ui-md-12">
+                    <div class="ui-g-12 ui-fileupload-row" *ngFor="let attachment of formModel?.uploadedFiles; let i = index">
+                        <div>
+                          <p-checkbox name="attachmentgroup" value="{{attachment.id}}" label="{{attachment.fileName}}" [(ngModel)]="selectedValues"></p-checkbox>
+                        </div>
+                        <div>
+                            {{attachment.fileSize | filelength}}
+                        </div>
+
+                        <div>
+                            <a target="_self" href="{{attachment.filePath}}"><i class="fa fa-download fa-lg" tooltipZIndex='11111' pTooltip="Download" tooltipPosition="top" aria-hidden="true"></i></a>
+                        </div>
+                        
+                    </div>
+                  </div>
+                </div>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-sidebar>
+

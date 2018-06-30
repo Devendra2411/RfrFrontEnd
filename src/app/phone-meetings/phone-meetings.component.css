@@ -1,0 +1,10 @@
+.asterisk::after {
+    content: '*';
+    color: red
+  }
+
+
+  .ui-sidebar-right {
+    top: 62px !important;
+    height: 81.5% !important;
+  }

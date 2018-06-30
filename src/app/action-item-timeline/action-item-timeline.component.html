@@ -1,0 +1,40 @@
+<div class="action-timeline-heading ui-g">
+  <div class="at-heading-section ui-g-12 ui-md-12">
+    <span class="at-date-label">Updated By:{{' '}}</span><span class="at-date">{{modifiedBy}}</span>&nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="float--right">
+      <span class="at-date-label float--right" >Updated Date:{{' '}} <span class="at-date">{{modifiedDate}}</span></span>
+    </span>
+  </div>
+  <div class="at-date-label ui-g-12 ui-md-12">Action item title:</div>
+  <div class="ui-g-12 ui-md-10">{{actionItem?.itemTitle}}</div>
+  <div class="ui-g-12 ui-md-1"><app-item-attachment></app-item-attachment></div>
+</div>
+<div class="container">
+  <form #actionTimelineForm="ngForm" class="at-form" (ngSubmit)="onSubmit(actionTimelineForm)">
+    <div class="ui-g ui-fluid">
+      <div class="ui-g-12 ui-md-12">
+        <div class="ui-inputgroup ui-g-12 ui-md-10">
+          <label class="label--inline asterisk ui-md-2" for="content">NOTE</label>
+          <textarea maxlength="255" name="content" value="" [(ngModel)]="content" placeholder="Enter text here..." required class="ui-md-10"  rows="2" cols="20" id="content"></textarea>
+        </div>
+        <div class="ui-inputgroup ui-g-12 ui-md-2">
+          <button type="submit" name="submit" class="btn" [disabled]="actionTimelineForm.invalid" [ngClass]="{ 'btn--primary': actionTimelineForm.valid,'btn--secondary': actionTimelineForm.invalid  }"><i class="fa fa-plus"></i>{{' '}}Add{{' '}}</button>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-12 alert alert-danger" *ngIf="actionTimelineForm.controls.content?.touched && actionTimelineForm.controls.content.errors?.required">
+        Please add your comment in the text area.
+      </div>
+    </div>
+  </form>
+
+  <div class="timeline-container">
+  	<div *ngFor="let timeline of timelineObj" class="timeline-item">
+  		<span class="timeline-date">{{timeline.changeTracking.createdDate}}</span>
+  		<h3 class="user-name">{{timeline.changeTracking.createdBy.firstName + ' ' + timeline.changeTracking.createdBy.lastName }}</h3>
+
+  		<read-more>
+  			{{timeline.notes}}
+  		</read-more>
+  	</div>
+  </div>
+</div>

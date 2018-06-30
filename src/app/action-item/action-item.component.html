@@ -1,0 +1,104 @@
+<app-side-bar [showSideBar]="visibleSidebar" [action]="sideBarAction" [formModel]="formModel" (hideSidebar)="onHideSidebar($event)">
+</app-side-bar>
+<div class="headerRFRList">
+  <span>
+    <i class="fa fa-file-text"></i>{{" "}} {{"Action Item"}} {{" "}}</span>
+  <hr style='display:inline-flex;border-top:dashed 1px;width:100%' />
+  <br>
+  <div class="layout">
+    <div class="layout__item u-1/6 ">
+      <span class="label  px-key-value-pair" style="margin-right:.2rem">ESN</span>
+      <span class="delta kvp-value--delta  px-key-value-pair">{{esn}} </span>
+    </div>
+    <div class="layout__item u-1/6 ">
+      <span class="label  px-key-value-pair" style="margin-right:.2rem">Site Name</span>
+      <span class="delta kvp-value--delta  px-key-value-pair">{{siteName}} </span>
+    </div>
+    <div class="layout__item u-1/6 ">
+      <button class="btn btn--primary" style="float:right" *ngxPermissionsOnly="['ROLE_WORKFLOW_CREATE']" (click)="openSideBarComponent($event,'add',{})">
+        <i class="fa fa-plus"></i>{{" "}}Add
+      </button>
+    </div>
+  </div>
+</div>
+<div class="layout flex-container">
+  <div class="layout__item u-1/2 action-list-container column">
+    <div class="actionList">
+      <p-dataView #dv [value]="actionData" [paginator]="false" [rows]="20" paginatorPosition="both" filterBy="itemTitle,status,levelValue,category,owner"
+        [sortField]="sortField" (onSort)="sortingActionItems($event)" [sortOrder]="sortOrder">
+        <p-header>
+          <div class="ui-helper-clearfix">
+            <div class="ui-g ">
+              <div class="layout">
+                <span class="sortby" (click)="sortBy()" *ngIf="sortByAscending">
+                  <label style="line-height: 1.8rem;"><i class="fa fa-sort-up"></i>Sort By </label>
+                </span>
+                <span class="sortby" (click)="sortBy()" *ngIf="!sortByAscending">
+                        <label style="line-height: 1.8rem;"><i class="fa fa-sort-down"></i>Sort By </label>
+                      </span>
+                <span class="sortby-dropdown">
+                  <p-dropdown class="sort-dropdown" [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By" (onChange)="onSortChange($event)"
+                    [autoWidth]="false" [style]="{'min-width':'7rem'}"></p-dropdown>
+                </span>
+                <span class="search-label">
+                  <label style="line-height: 1.8rem;">Search </label>
+                </span>
+
+                <span class="search-box">
+                  <input type="search" class="ui-inputtext header-ui-inputtext ui-corner-all ui-state-default ui-widget search-box-input" pinputtext=""
+                    placeholder="Search" type="text" (keyup)="dv.filter($event.target.value)">
+                </span>
+                <span>
+                  <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+        </p-header>
+        <div class="action-container">
+          <ul id="list__body" class="list-ui list-ui--small">
+            <ng-template let-data pTemplate="listItem" let-i="rowIndex">
+              <li class="list-ui__item pointer" (click)="setIndex($event,i,data)" [class.ui-state-highlight]="selectedIndex === i">
+                <div class="title flex__item ">
+                  <span class="alertlabel px-alert-label status-box" [ngClass]='data.status'>
+                    <span class="label__text  px-alert-label">{{statusMap?.get(data.status)}}</span>
+                  </span>
+                  <span class="title action" style="min-width: 18rem;padding-top: .2rem;" pTooltip="{{data.itemTitle}}" tooltipPosition="top">{{ data.itemTitle | truncate:[42, '...' ]}} </span>
+                  <span class="info">Due Date: {{data.dueDate}}</span>
+                </div>
+                <div class="title flex__item layout" style="margin-top: 0.3rem;">
+                  <span class="subtitle layout__item owner">
+                    <label>Owner:</label>
+                    <span pTooltip="{{ownerMap?.get(data.owner)}}" tooltipPosition="top"> {{ownerMap?.get(data.owner)}}</span>
+                  </span>
+                  <span class="subtitle layout__item category">
+                    <label>Category: </label>
+                    <span pTooltip="{{categoryMap?.get(data.category)}}" tooltipPosition="top">{{ categoryMap?.get(data.category) | truncate:[15, '...' ]}}</span>
+                  </span>
+                  <span class="subtitle layout__item tasktype">
+                    <label>Task Type: </label>
+                    <span pTooltip="{{taskMap?.get(data.taskType)}}" tooltipPosition="top">{{ taskMap?.get(data.taskType) | truncate:[12, '...' ]}}</span>
+                  </span>
+                  <span class="subtitle actionedit" (click)="openSideBarComponent($event,'edit',data)" pTooltip="Edit Action" tooltipPosition="top">
+                    <i class="fa fa-pencil" style="margin:4px 4px 0 0"></i>
+                  </span>
+                </div>
+              </li>
+            </ng-template>
+          </ul>
+        </div>
+      </p-dataView>
+    </div>
+  </div>
+  <div class="layout__item u-1/2 column">
+    <div class="actionDetail">
+      <div class="boxMessage" [hidden]="showBoxMessage">
+        Nothing to show.
+        <br>
+        <br> Please click on an Action Item
+      </div>
+      <div class="singleActionDetails" [hidden]="!showBoxMessage" style="padding:15px 15px 0px">
+        <app-action-item-timeline></app-action-item-timeline>
+      </div>
+    </div>
+  </div>

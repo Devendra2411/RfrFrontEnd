@@ -1,0 +1,58 @@
+#equipSerialNumber, #outageId {
+  padding-top: 0;
+}
+
+.label-form {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+#workflowForm {
+  width: 100%;
+  display: inline-block;;
+}
+.container-box{
+  background-color: #ebeff2;
+  padding:0;
+
+}
+.unit-name{
+/*   width: 100%;
+  height: 2rem; */
+}
+.unit-box{
+  padding-bottom: 1rem;
+  background-color: grey;
+  margin-left: 0;
+  padding-top: 1rem;
+}
+.unit-box label{
+  color: #fff;
+}
+.toggle-box{
+  padding-top: .5rem;
+}
+.unit-box-container{
+  padding: .2rem 0rem .2rem 0rem;
+  border-bottom: 1px solid darkgrey;
+  margin-left: 0;
+  border-right: 1px solid darkgrey;
+  border-left: 1px solid darkgrey;
+}
+.unit-label{
+  font-size: 9px;
+  font-weight: bold;
+}
+.margin-auto{
+  margin: auto;
+}  
+.unit-box-header{
+  background-color: lightgrey;
+  font-weight: bold;
+}
+.unit-info{
+  font-size: 17px;
+  padding-top: 3px;
+  color: #fff;
+  cursor: pointer;
+}

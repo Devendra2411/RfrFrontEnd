@@ -1,0 +1,80 @@
+<div class="headerRFRList">
+  <span>
+    <i class="fa fa-file-text"></i>{{" "}} {{"All Workflows"}} {{" "}}</span>
+  <hr style='display:inline-flex;border-top:dashed 1px;width:100%'/>
+  <br>
+  <button class="btn btn--primary" style="float:right" routerLink="/rfrWorkflow/workflow"
+          *ngxPermissionsOnly="['ROLE_WORKFLOW_CREATE']">
+    <i class="fa fa-plus"></i>{{" "}}Create Workflow
+  </button>
+</div>
+
+<!--Prime Ng Table-->
+<p-table #dt [value]="projectsData" [columns]="selectedColumns" [paginator]="true" [rows]="10" [pageLinks]="3"
+         [rowsPerPageOptions]="[5,10,20]">
+  <ng-template pTemplate="caption">
+    <div style="text-align:left">
+        <p-multiSelect class="mySelect" [options]="cols" [(ngModel)]="selectedColumns" (ngModelChange)="reShuffleSelectedColumns($event)" optionLabel="header"
+                    selectedItemsLabel="{0} columns selected" [style]="{minWidth: '200px'}" defaultLabel="Choose Columns"></p-multiSelect>
+    </div>
+    <!-- START: Implementing Global Search Filter Below-->
+    <div class="globalSearch">
+      <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+      <input type="text" class="ui-inputtext header-ui-inputtext" pInputText size="50" placeholder="Global Filter"
+             (input)="dt.filterGlobal($event.target.value, 'contains')"
+             style="width:auto">
+    </div>
+    <!-- END: Implementing Global Search Filter Below-->
+  </ng-template>
+  
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th *ngFor="let col of columns;first as isFirst" [pSortableColumn]="col.field" [ngClass]="col.tdClass"
+          [hidden]="!col.showColumns">
+        <span>
+          {{col.header}}
+          <p-sortIcon [field]="col.field" *ngIf="col.sortable && col.field != 'action'"></p-sortIcon>
+        </span>
+      </th>
+    </tr>
+    <!-- START: Implementing Column Search Filter Below-->
+    <tr>
+      <th *ngFor="let col of columns;first as isFirst" [hidden]="!col.showColumns">
+        <span *ngIf="col.filter && col.field != 'action'">
+          <input class="header-ui-inputtext ui-inputtext" type="text" pInputText
+                 (input)="dt.filter($event.target.value, col.field,'contains')" placeholder={{col.placeholder}}>
+        </span>
+      </th>
+    </tr>
+    <!-- END: Implementing Column Search Filter Below-->
+  </ng-template>
+  <ng-template pTemplate="body" let-columns="columns" let-proj>
+    <tr>
+      <td *ngFor="let col of columns;first as isFirst;index as i" [hidden]="!col.showColumns" [ngClass]="col.tdClass">
+        <span *ngIf="col.field != 'action' && col.isDate != true">
+              {{proj[col.field]}}
+         </span>
+        <span *ngIf="col.field == 'action'">
+           <span *ngxPermissionsOnly="['ROLE_WORKFLOW_CREATE']">
+            <a routerLink="/rfrWorkflow/workflow/{{proj['workflowId']}}"><i class="fa fa-pencil"
+                                                                            title="Edit Workflow"></i></a>
+          </span>
+          <span *ngxPermissionsOnly="['ROLE_WORKFLOW_VIEW']">
+            <a routerLink="/rfrWorkflow/{{proj['workflowId']}}/actionItem"  ><i class="fa fa-list" style="padding-left:5px"
+                                                                            title="Action Item"></i></a>
+          </span>
+           <span *ngxPermissionsExcept="['ROLE_WORKFLOW_CREATE']">
+             <a routerLink="/rfrWorkflow/workflow/{{proj['workflowId']}}"><i class="fa fa-eye"  style="padding-left:5px"
+                                                                             title="View Workflow"></i></a>
+           </span>
+           <span>
+            <a routerLink="/rfrWorkflow/{{proj['workflowId']}}/meetinglines" ><i class="fa fa-phone" style="padding-left:5px" title="Phone Line Minutes"></i></a>
+          </span>
+        </span>
+        <span *ngIf="col.isDate == true">
+           {{proj[col.field]}}
+        </span>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

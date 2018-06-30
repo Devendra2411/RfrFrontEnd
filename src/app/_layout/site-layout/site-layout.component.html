@@ -1,0 +1,27 @@
+<site-header></site-header>
+<div class="viewport">
+  <div class="content-wrapper">
+    <site-navbar></site-navbar>
+    <main class="u-pt-- u-pr-- u-pl--" role="main">
+      <div class="cardbox">
+        <mc-breadcrumbs></mc-breadcrumbs>
+        <hr style="margin-bottom: 2rem;">
+        <ul>
+          <li style="color:red;margin-left:-51px!important" *ngFor="let errorMsg  of errorMsgs">{{errorMsg}}</li>
+        </ul>
+        <mat-progress-spinner style="position: absolute;top: 40%;z-index: 999;right: 50%;left: 50%;"
+                              mode="indeterminate" color="primary" diameter="100"
+                              *ngIf="spinner"></mat-progress-spinner>
+        <div *ngIf="serviceDown">
+          <h1>503 Service Unavailable</h1>
+          <p>The server is temporarily unable to service your request due to maintenance downtime or capacity problems.
+            Please try again later.
+        </div>
+        <router-outlet *ngIf="!serviceDown"></router-outlet>
+      </div>
+      <!-- uiView:  -->
+    </main>
+  </div>
+</div>
+
+<site-footer></site-footer>

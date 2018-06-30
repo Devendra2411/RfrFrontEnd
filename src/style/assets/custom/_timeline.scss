@@ -1,0 +1,138 @@
+body {
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+// ----------------  THE FONTS
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Oswald', sans-serif;
+}
+
+h1 {
+	font-size: 2rem;
+	margin-bottom: .5em;
+}
+
+p {
+	font-family: 'Roboto', sans-serif;
+	font-size: .8rem;
+}
+
+// ----------------  LAYOUT
+
+.container {
+	max-width: 1024px;
+	width: 100%;
+	margin: 0;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+// ----------------  THE FONTS
+
+$border-color: rgba(black, .3);
+app-item-attachment{
+	.mat-badge-medium.mat-badge-overlap.mat-badge-after{
+		margin-top: 0;
+	}	
+}
+.actionList .ui-dataview-content {
+	border: 1px solid #D5D5D5;
+	background: #ebeff2 !important;
+	height: 43rem;
+	overflow-y: scroll;
+	overflow-x: hidden;
+  }
+.timeline-container{
+ height: 350px;
+  overflow-y: scroll;
+  padding: 10px;
+}
+
+.timeline-item {
+	padding: 3em 2em 2em;
+	position: relative;
+	color: rgba(black, .7);
+	border-left: 2px solid $border-color;
+
+	p {
+		font-size: 1rem;
+	}
+
+	.timeline-date{
+		position: absolute;
+		top: 10px;
+		left: 23px;
+	}
+
+	&::before {
+		content: attr(date-is);
+		position: absolute;
+		left: 2em;
+		font-weight: bold;
+		top: 1em;
+		display: block;
+		font-family: 'Roboto', sans-serif;
+		font-weight: 700;
+		font-size: .785rem;
+	}
+
+	&::after {
+		width: 20px;
+		height: 20px;
+		display: block;
+		top: 0;
+		position: absolute;
+		left: -11px;
+		border-radius: 10px;
+		content: '';
+		border: 4px solid #FF9F55;
+		background: white;
+	}
+
+	&:last-child {
+		border-image: linear-gradient(
+			to bottom,
+			$border-color 60%,
+			rgba($border-color, 0)) 1 100%
+		;
+	}
+	.user-name{
+		position: absolute;
+		top: -25px;
+		left: 23px;
+	}
+}
+
+.action-timeline-heading{
+	background: #fff;
+	padding: 5px;
+	box-shadow: 1px 5px 5px #ddd;
+	font-size: 14px;
+
+	.at-heading-section{
+		border-bottom: 1px dashed var(--px-list-ui-separator-color, #b6c3cc);
+	}
+}
+
+.at-form{
+	background: #fff;
+	padding: 10px;
+	box-shadow: 1px 5px 5px #ddd;
+	margin-bottom: 10px;
+}
+
+.at-date-label{
+	font-size: 16px;
+	color: var(--px-base-text-color, #2c404c);
+	font-weight: 800;
+	padding-bottom: 0;
+}
+
+.at-date{
+	font-size: 14px;
+  font-weight: normal;
+}
+
+

@@ -1,0 +1,72 @@
+<div class="headerRFRList">
+  <span>
+    <i class="fa fa-file-text"></i>{{" "}} {{"Minutes"}} {{" "}}</span>
+  <hr style='display:inline-flex;border-top:dashed 1px;width:100%' />
+  <div class="layout">
+    <div class="layout__item u-1/2 ">
+      <span class="label  px-key-value-pair" style="margin-right:.2rem">ESN</span>
+      <span class="delta kvp-value--delta  px-key-value-pair">{{esnID}} </span>
+    </div>
+    <div class="layout__item u-1/2 ">
+      <span class="label  px-key-value-pair" style="margin-right:.2rem">Site Name</span>
+      <span class="delta kvp-value--delta  px-key-value-pair">{{siteName}} </span>
+    </div>
+  </div>
+  <form (ngSubmit)="updatePhoneMinutes()" [formGroup]="updateCallMinutesForm" ngNativeValidate id="minutesForm">
+    <br>
+    <div class="layout">
+      <div class="layout__item u-1/2 ">
+        <label for="meetingLine" class="asterisk">MEETING LINE</label>
+        <div class="alert alert-danger" *ngIf="updateCallMinutesForm.controls.meetingLine.errors?.required && updateCallMinutesForm.controls.meetingLine.touched">
+          MEETING LINE is a required field
+        </div>
+        <textarea formControlName="meetingLine" class="input--large" id="meetingLine" required></textarea>
+        <p>
+          <br/>
+        </p>
+      </div>
+      <div class="layout__item u-1/2 ">
+        <div class="ui-g ui-fluid">
+          <div class="ui-g-12 ui-md-12">
+            <div class="ui-inputgroup">
+              <label class="label--inline asterisk ui-md-6 asterisk" for="meetingId">MEETING ID</label>
+              <span id="meetingId" name="meetingId">{{minutesObj.meetingId}}</span>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-12">
+            <div class="ui-inputgroup">
+              <label class="label--inline asterisk ui-md-6 asterisk" for="meetingDate">DATE</label>
+              <p-calendar class="ui-md-5" [showIcon]="true" [showTime]="true" 
+                [yearNavigator]="true" [monthNavigator]="true"
+                [yearRange]="'2010:2040'" hourFormat="12" formControlName="meetingDate" id="meetingDate" 
+                 showButtonBar="true"
+                required></p-calendar>
+            </div>
+          </div>
+          <div class="ui-g-12">
+            <div class="ui-inputgroup">
+              <label class="label--inline asterisk ui-md-6 asterisk" for="modifiedDate">LAST MODIFIED DATE</label>
+              <span id="modifiedDate" name="modifiedDate">{{minutesObj.modifiedDate}}</span>
+            </div>
+          </div>
+          <div class="ui-g-12">
+            <div class="ui-inputgroup">
+              <label class="label--inline asterisk ui-md-6 asterisk" for="modifiedBy">LAST MODIFIED BY</label>
+              <span name="modifiedBy" id="modifiedBy">{{" "}}{{minutesObj.modifiedBy}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <label for="phoneCallMinutes" class="asterisk">Minutes:</label>
+    <div class="alert alert-danger" *ngIf="updateCallMinutesForm.controls.phoneCallMinutes.errors?.required && updateCallMinutesForm.controls.phoneCallMinutes.touched">
+      Phone Call Minutes is a required field
+    </div>
+    <p-editor [style]="{'height':'320px'}" id="phoneCallMinutes" formControlName="phoneCallMinutes"
+      [readonly]="!editFlag" *ngIf="displayEditor"></p-editor>
+
+    <button class="btn" [ngClass]="{ 'btn--call-to-action': updateCallMinutesForm.valid,'btn--secondary': updateCallMinutesForm.invalid  }"
+      style="float:right;margin-top:1em" [disabled]="updateCallMinutesForm.invalid" *ngIf="editFlag">
+      <i class="fa fa-save"></i>{{" "}}Save</button>
+  </form>

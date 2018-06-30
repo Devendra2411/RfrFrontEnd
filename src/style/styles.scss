@@ -1,0 +1,78 @@
+// Settings
+@import "px-colors-design/_settings.colors.scss";
+@import "px-defaults-design/_settings.defaults.scss";
+// Tools
+@import "px-functions-design/_tools.functions.scss";
+@import "px-mixins-design/_tools.mixins.scss";
+// Generic
+@import "px-normalize-design/_generic.normalize.scss";
+@import "px-box-sizing-design/_generic.box-sizing.scss";
+@import "px-helpers-design/_generic.helpers.scss";
+@import "px-helpers-design/_generic.helpers.scss";
+@import "px-box-sizing-design/_generic.box-sizing.scss";
+// Base
+@import "px-flexbox-design/_base.flexbox.scss";
+@import "px-viewport-design/_base.viewport.scss";
+
+$inuit-enable-input--small: true;
+$inuit-enable-input--regular: true;
+$inuit-enable-input--large: true;
+$inuit-enable-input--regular: true;
+$inuit-enable-input--huge: true;
+$inuit-enable-input--tiny: true;
+@import "px-forms-design/_base.forms.scss";
+@import "px-headings-design/_base.headings.scss";
+@import 'px-flexbox-design/_base.flexbox.scss';
+$fa-font-path: './assets/vendor/';
+@import "px-iconography-design/_base.iconography.scss";
+@import "px-typography-design/_base.typography.scss";
+
+// Meta
+
+// Objects
+@import 'px-actionable-design/_objects.actionable.scss';
+@import "px-list-bare-design/_objects.list-bare.scss";
+@import 'px-list-inline-design/_objects.list-inline.scss';
+@import 'px-list-ui-design/_objects.list-ui.scss';
+@import 'px-box-design/_objects.box.scss';
+@import 'px-flag-design/_objects.flag.scss';
+@import 'px-layout-design/_objects.layout.scss';
+
+$inuit-enable-btn--small: true;
+$inuit-enable-btn--large: true;
+$inuit-enable-btn--primary: true;
+$inuit-enable-btn--call-to-action: true;
+@import 'px-buttons-design/_objects.buttons.scss';
+
+$inuit-enable-table--columns: true;
+$inuit-enable-table--cells: true;
+$inuit-enable-table--fixed: true;
+$inuit-enable-table--small: true;
+$inuit-enable-table--large: true;
+@import 'px-tables-design/_base.tables.scss';
+
+$inuit-enable-toggle--small : true;
+$inuit-enable-toggle--large : true;
+$inuit-enable-toggle--huge : true;
+$inuit-enable-toggle--disabled : true;
+@import "px-toggle-design/_objects.toggle.scss";
+// Component
+// Your css goes in here
+
+// Trumps
+@import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
+@import "px-widths-responsive-design/_trumps.widths-responsive.scss";
+
+$inuit-enable-margins: true;
+$inuit-enable-paddings: true;
+@import 'px-spacing-design/_trumps.spacing.scss';
+
+$inuit-enable-responsive-margins: true;
+$inuit-enable-responsive-paddings: true;
+@import 'px-spacing-responsive-design/_trumps.spacing-responsive.scss';
+@import "px-widths-design/_trumps.widths.scss";
+
+@import "px-widths-responsive-design/_trumps.widths-responsive.scss";
+@import "px-clearfix-design/_trumps.clearfix.scss";
+
+@import "RFRcustom.scss";

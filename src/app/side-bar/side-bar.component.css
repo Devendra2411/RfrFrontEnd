@@ -1,0 +1,16 @@
+.itemFormContainer{
+  padding-top: 50px;
+}
+
+.headerAddItem{
+  margin-bottom: 20px;
+}
+
+select{
+  line-height: 13px;
+}
+
+.af-error-section .alert{
+  padding: .2rem 1.25rem;
+  margin-bottom: 0.2rem;
+}

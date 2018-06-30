@@ -1,0 +1,86 @@
+
+<p-sidebar styleClass="ui-sidebar-md" #sidebar [(visible)]="visibleSidebar" position="right" [baseZIndex]="10000" (onShow)="openSideBar()">
+
+  <div class="itemFormContainer">
+    <div class="headerAddItem">
+      <span>
+        <i class="fa fa-plus"></i>{{" "}} {{actionTitle+" Action Item"}} {{" "}}</span>
+      <hr style='display:inline-block;border-top:dashed 1px;width:75%;margin:0'/>
+    </div>
+      <form [formGroup]="form" (ngSubmit)="onSubmit(action)">
+        <div class="ui-g ui-fluid">
+          <div class="ui-g-12 ui-md-12">
+            <div class="ui-inputgroup">
+              <label class="label--inline asterisk ui-md-2 asterisk" for="itemTitle">ACION ITEM</label>
+              <textarea name="itemTitle" placeholder="Enter text here..." formControlName="itemTitle" class="ui-md-10" heig  rows="2" cols="20" id="itemTitle"></textarea>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-12">
+            <div class="ui-inputgroup">
+              <label class="label--inline asterisk ui-md-2 asterisk" for="dueDate">DUE DATE</label>
+              <p-calendar class="ui-md-10 padding-lr-0" [showIcon]="true" formControlName="dueDate" name="dueDate" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030" showButtonBar="true">
+             </p-calendar>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-12 padding-lr-0">
+            <div class="ui-inputgroup ui-g-12 ui-md-6">
+              <label class="label--inline asterisk ui-md-4 asterisk" for="category">CATEGORY</label>
+              <select name="category" class="ui-md-8" formControlName="category">
+                <option value="">Select</option>
+                <option *ngFor="let category of categoryOptions" [value]="category.key">{{category.value}}</option>
+              </select>
+            </div>
+            <div class="ui-inputgroup ui-g-12 ui-md-6">
+              <label class="label--inline asterisk ui-md-4 asterisk" for="owner">OWNER</label>
+              <select name="owner" class="ui-md-8" formControlName="owner">
+                <option value="">Select</option>
+                <option *ngFor="let owner of ownerOptions" [value]="owner.key">{{owner.value}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-12 padding-lr-0">
+            <div class="ui-inputgroup ui-g-12 ui-md-6">
+              <label class="label--inline asterisk ui-md-4 asterisk" for="taskType">TASK TYPE</label>
+              <select name="taskType" class="ui-md-8" formControlName="taskType">
+                <option value="">Select</option>
+                <option *ngFor="let taskType of typeOptions" [value]="taskType.key">{{taskType.value}}</option>
+              </select>
+            </div>
+            <div class="ui-inputgroup ui-g-12 ui-md-6">
+              <label class="label--inline asterisk ui-md-4 asterisk" for="status">STATUS</label>
+              <select name="status" class="ui-md-8" formControlName="status">
+                <option value="">Select</option>
+                <option *ngFor="let status of statusOptions" [value]="status.key">{{status.value}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-md-12">
+            <button taskType="submit" class="btn float--right" [ngClass]="{ 'btn--call-to-action': form.valid,'btn--secondary': form.invalid  }" [disabled]="form.invalid" label="Save"><i _ngcontent-c14="" class="fa fa-save"></i>{{' '}}Save{{' '}}</button>
+          </div>
+          <div class="ui-g-12 ui-md-12 af-error-section" >
+            <div class="alert alert-danger" *ngIf="form.controls.itemTitle.errors?.required && form.controls.itemTitle.touched">
+                Action Item title is a required field
+            </div>
+            <div class="alert alert-danger" *ngIf="form.controls.dueDate.errors?.required && form.controls.dueDate.touched">
+                Due Date is a required field
+            </div>
+            <div class="alert alert-danger" *ngIf="form.controls.category.errors?.required && form.controls.category.touched">
+                Category is a required field
+            </div>
+
+            <div class="alert alert-danger" *ngIf="form.controls.taskType.errors?.required && form.controls.taskType.touched">
+                Task Type is a required field
+            </div>
+            <div class="alert alert-danger" *ngIf="form.controls.owner.errors?.required && form.controls.owner.touched">
+                Owner is a required field
+            </div>
+            <div class="alert alert-danger" *ngIf="form.controls.status.errors?.required && form.controls.status.touched">
+                Status is a required field
+            </div>
+          </div>
+        </div>
+
+      </form>
+  </div>
+
+</p-sidebar>
